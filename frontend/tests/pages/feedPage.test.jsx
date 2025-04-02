@@ -26,7 +26,7 @@ describe("Feed Page", () => {
   test("It displays posts from the backend", async () => {
     window.localStorage.setItem("token", "testToken");
 
-    const mockPosts = [{ _id: "12345", message: "Test Post 1" }];
+    const mockPosts = [{ _id: "12345", question: "Test Post 1" }];
 
     getPosts.mockResolvedValue({ posts: mockPosts, token: "newToken" });
 

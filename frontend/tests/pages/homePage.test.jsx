@@ -13,7 +13,7 @@ describe("Home Page", () => {
     );
 
     const heading = screen.getByRole("heading");
-    expect(heading.textContent).toEqual("Welcome to Acebook!");
+    expect(heading.textContent).toEqual("QuizBook");
   });
 
   test("Displays a signup link", async () => {
@@ -23,7 +23,7 @@ describe("Home Page", () => {
       </BrowserRouter>
     );
 
-    const signupLink = screen.getByText("Sign Up");
+    const signupLink = screen.getByText("Sign up");
     expect(signupLink.getAttribute("href")).toEqual("/signup");
   });
 
@@ -34,7 +34,7 @@ describe("Home Page", () => {
       </BrowserRouter>
     );
 
-    const loginLink = screen.getByText("Log In");
+    const loginLink = screen.getByText("Sign in");
     expect(loginLink.getAttribute("href")).toEqual("/login");
   });
 });
