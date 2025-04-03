@@ -9,15 +9,11 @@ export const CreateAccount = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [surname, setSurname] = useState("");
   const navigate = useNavigate();
 
   const handleEmailChange = (event) => setEmail(event.target.value);
   const handlePasswordChange = (event) => setPassword(event.target.value);
   const handleUsernameChange = (event) => setUsername(event.target.value);
-  const handleFirstNameChange = (event) => setFirstName(event.target.value);
-  const handleSurnameChange = (event) => setSurname(event.target.value);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -37,22 +33,6 @@ export const CreateAccount = () => {
         <h1 className="create-account-title">Create Account</h1>
       </header>
       <form className="form" onSubmit={handleSubmit}>
-        <input
-          className="input"
-          placeholder="First Name"
-          id="firstName"
-          type="firstName"
-          value={firstName}
-          onChange={handleFirstNameChange}
-        />
-        <input
-          className="input"
-          placeholder="Surname"
-          id="surname"
-          type="surname"
-          value={surname}
-          onChange={handleSurnameChange}
-        />
         <input
           className="input"
           placeholder="Username"
