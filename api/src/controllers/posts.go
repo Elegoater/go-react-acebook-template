@@ -94,3 +94,37 @@ func CreatePost(ctx *gin.Context) {
 
 	ctx.JSON(http.StatusCreated, gin.H{"message": "Post created", "token": token})
 }
+
+func GetPostsByUserID(ctx *gin.Context) {
+	userIDParam := ctx.Param("id")
+	userID, err := strconv.ParseUint(userIDParam, 10, 32)
+	
+	if err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"message": "Invalid user ID"})
+		return
+	}
+	
+	posts, err := models.FetchPostsByUserID(uint(userID))
+	
+	if err != nil {
+		SendInternalError(ctx, err)
+		return
+	}
+	
+	val, _ := ctx.Get("userID")
+	tokenUserID := val.(string)
+	token, _ := auth.GenerateToken(tokenUserID)
+	
+	// Convert posts to JSON Structs
+	jsonPosts := make([]JSONPost, 0)
+	for _, post := range *posts {
+		jsonPosts = append(jsonPosts, JSONPost{
+			ID:       post.ID,
+			Question: post.Question,
+			Answer:   post.Answer,
+			UserID:   post.UserID,
+		})
+	}
+	
+	ctx.JSON(http.StatusOK, gin.H{"posts": jsonPosts, "token": token})
+}

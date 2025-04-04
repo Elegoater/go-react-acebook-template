@@ -37,3 +37,14 @@ func FetchAllPosts() (*[]Post, error) {
 
 	return &posts, nil
 }
+
+func FetchPostsByUserID(userID uint) (*[]Post, error) {
+	var posts []Post
+	err := Database.Where("user_id = ?", userID).Find(&posts).Error
+
+	if err != nil {
+		return &[]Post{}, err
+	}
+
+	return &posts, nil
+}
