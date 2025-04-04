@@ -11,4 +11,5 @@ func setupPostRoutes(baseRouter *gin.RouterGroup) {
 
 	posts.POST("", middleware.AuthenticationMiddleware, controllers.CreatePost)
 	posts.GET("", middleware.AuthenticationMiddleware, controllers.GetAllPosts)
+	posts.GET("/user/:id", middleware.AuthenticationMiddleware, controllers.GetPostsByUserID)
 }

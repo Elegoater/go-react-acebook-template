@@ -33,8 +33,6 @@ export const signup = async (email, password, username, firstName, surname) => {
     email: email,
     password: password,
     username: username,
-    firstName: firstName,
-    surname: surname,
   };
 
   const requestOptions = {
